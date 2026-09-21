@@ -2,8 +2,6 @@ package com.cosario.chess2.model;
 
 import lombok.Getter;
 
-import java.awt.*;
-
 public class Case {
 
     @Getter
@@ -11,20 +9,42 @@ public class Case {
     @Getter
     private Coordonee coordonee;
 
-    public Case() {
+    public Case(Coordonee coordonee) {
         this.piece = null;
-        this.coordonee = new Coordonee(0, 0);
+        this.coordonee = coordonee;
     }
 
-    boolean estVide() {
+    public boolean estVide() {
         return piece == null;
     }
 
-    void placerPiece(Piece piece) {
+    public void setPiece(Piece piece) {
+        if (this.piece != null && this.piece != piece && this.piece.getCaseActuelle() == this) {
+            this.piece.setCaseActuelle(null);
+        }
         this.piece = piece;
+        if (piece != null && piece.getCaseActuelle() != this) {
+            Case ancienneCase = piece.getCaseActuelle();
+            if (ancienneCase != null && ancienneCase.piece == piece) {
+                ancienneCase.piece = null;
+            }
+            piece.setCaseActuelle(this);
+        }
+    }
+
+    void placerPiece(Piece piece) {
+        setPiece(piece);
     }
 
     void retirerPiece() {
+        if (piece != null && piece.getCaseActuelle() == this) {
+            piece.setCaseActuelle(null);
+        }
         this.piece = null;
+    }
+
+    @Override
+    public String toString() {
+        return piece != null ? piece.toString() : ".";
     }
 }
