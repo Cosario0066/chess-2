@@ -4,21 +4,18 @@ import com.cosario.chess2.model.*;
 public class TestPion {
     public static void main(String[] args) {
 
-        // Test de la classe Pion
+        Plateau plateau = new Plateau();
+
         // Créer un pion blanc
-        Pion pionBlanc = new Pion(new Case(new Coordonee(0, 0)), Couleur.BLANC);
+        Pion pionBlanc = new Pion(plateau, new Coordonee(5, 5), Couleur.BLANC);
 
         System.out.println("Pion blanc : " + pionBlanc);
 
         // Créer un pion noir
-        Pion pionNoir = new Pion(new Case(new Coordonee(0, 1)), Couleur.NOIR);
+        Pion pionNoir = new Pion(plateau, new Coordonee(6, 6), Couleur.NOIR);
         System.out.println("Pion noir : " + pionNoir);
 
         // Test de la méthode de déplacement du pion
-        Plateau plateau = new Plateau();
-        plateau.initialisationPlateau();
-        plateau.getCase(new Coordonee(5, 5)).setPiece(pionBlanc);
-        plateau.getCase(new Coordonee(6, 6)).setPiece(pionNoir);
         System.out.println("Plateau après placement des pions :");
         System.out.println(plateau);
 

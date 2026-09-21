@@ -5,13 +5,6 @@ public class Plateau {
 
     public Plateau() {
         grille = new Case[10][10];
-    }
-
-    public Case getCase(Coordonee coord) {
-        return grille[coord.getX()][coord.getY()];
-    }
-
-    public void initialisationPlateau() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 grille[i][j] = new Case(new Coordonee(i, j));
@@ -19,11 +12,31 @@ public class Plateau {
         }
     }
 
-    boolean estCaseVide(Coordonee coord) {
+    public Case getCase(Coordonee coord) {
+        if (!estDansPlateau(coord)) {
+            throw new IllegalArgumentException("Coordonnée hors du plateau : " + coord);
+        }
+        return grille[coord.getX()][coord.getY()];
+    }
+
+    public void initialisationPlateau() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (grille[i][j] == null) {
+                    grille[i][j] = new Case(new Coordonee(i, j));
+                }
+            }
+        }
+    }
+
+    public boolean estCaseVide(Coordonee coord) {
+        if (!estDansPlateau(coord)) {
+            return false;
+        }
         return grille[coord.getX()][coord.getY()].estVide();
     }
 
-    boolean estDansPlateau(Coordonee coord) {
+    public boolean estDansPlateau(Coordonee coord) {
         return coord.getX() >= 0 && coord.getX() < 10 && coord.getY() >= 0 && coord.getY() < 10;
     }
 

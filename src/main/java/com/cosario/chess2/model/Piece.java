@@ -10,10 +10,11 @@ public abstract class Piece {
     @Setter
     private boolean aDejaBouge;
 
-    public Piece(Couleur couleur, Case caseActuelle) {
+    public Piece(Plateau plateau, Coordonee coordonee, Couleur couleur) {
         this.couleur = couleur;
         this.aDejaBouge = false;
-        this.caseActuelle = caseActuelle;
+        this.caseActuelle = plateau.getCase(coordonee);
+        this.caseActuelle.setPiece(this);
     }
 
     public Couleur getCouleur() {
