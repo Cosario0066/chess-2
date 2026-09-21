@@ -39,6 +39,6 @@ public class Roi extends Piece {
 
     @Override
     public String toString() {
-        return (this.getCouleur() == Couleur.BLANC) ? "R" : "r";
+        return (this.getCouleur() == Couleur.BLANC) ? "K" : "k";
     }
 }

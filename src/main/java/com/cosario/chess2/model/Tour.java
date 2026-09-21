@@ -12,4 +12,9 @@ public class Tour extends Piece {
         // TODO: Implement the logic for the possible moves of the rook
         return new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "R" : "r";
+    }
 }

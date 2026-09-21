@@ -40,7 +40,7 @@ public class Plateau {
         return coord.getX() >= 0 && coord.getX() < 10 && coord.getY() >= 0 && coord.getY() < 10;
     }
 
-    void afficherPlateau() {
+    public void afficherPlateau() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 System.out.print(grille[i][j] + " ");
@@ -51,6 +51,16 @@ public class Plateau {
 
     public boolean estCaseOccupeeParAdversaire(Coordonee coordDiagDroite, Couleur couleur) {
         return estDansPlateau(coordDiagDroite) && !estCaseVide(coordDiagDroite) && grille[coordDiagDroite.getX()][coordDiagDroite.getY()].getPiece().getCouleur() != couleur;
+    }
+
+    public String [][] exporterPlateau() {
+        String[][] plateauExport = new String[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                plateauExport[j][i] = grille[i][j].toString();
+            }
+        }
+        return plateauExport;
     }
 
     @Override

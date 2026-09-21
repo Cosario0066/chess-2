@@ -9,7 +9,12 @@ public class Fou extends Piece{
 
     @Override
     public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
-        // Todo: Implement the logic for the possible moves of the fool
+        // Todo: Implement the logic for the possible moves of the bishop
         return new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "B" : "b";
     }
 }
