@@ -12,4 +12,9 @@ public class Reine extends Piece {
         // Todo: Implement the logic for the possible moves of the queen
         return new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "Q" : "q";
+    }
 }

@@ -1,5 +1,21 @@
 async function loadBoard() {
     const boardElement = document.getElementById('board');
+    const pieceIcons = {
+        k: 'fa-chess-king',
+        q: 'fa-chess-queen',
+        r: 'fa-chess-rook',
+        b: 'fa-chess-bishop',
+        n: 'fa-chess-knight',
+        p: 'fa-chess-pawn'
+    };
+    const pieceNames = {
+        k: 'roi',
+        q: 'reine',
+        r: 'tour',
+        b: 'fou',
+        n: 'cavalier',
+        p: 'pion'
+    };
 
     try {
         const response = await fetch('/api/board');
@@ -22,12 +38,15 @@ async function loadBoard() {
                 cellElement.className = `cell ${isLight ? 'light' : 'dark'}`;
 
                 if (cell && cell !== '.') {
-                    const pieceElement = document.createElement('span');
+                    const pieceElement = document.createElement('i');
                     const isBlack = cell === cell.toLowerCase();
+                    const icon = pieceIcons[cell.toLowerCase()];
 
-                    pieceElement.className = `piece ${isBlack ? 'black' : 'white'}`;
-                    pieceElement.textContent = cell;
-                    cellElement.appendChild(pieceElement);
+                    if (icon) {
+                        pieceElement.className = `piece ${isBlack ? 'black' : 'white'} fa-solid ${icon}`;
+                        pieceElement.setAttribute('aria-label', `${isBlack ? 'Noir' : 'Blanc'} ${pieceNames[cell.toLowerCase()]}`);
+                        cellElement.appendChild(pieceElement);
+                    }
                 }
 
                 boardElement.appendChild(cellElement);

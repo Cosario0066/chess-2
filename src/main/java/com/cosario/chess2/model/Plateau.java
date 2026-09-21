@@ -57,7 +57,7 @@ public class Plateau {
         String[][] plateauExport = new String[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                plateauExport[i][j] = grille[i][j].toString();
+                plateauExport[j][i] = grille[i][j].toString();
             }
         }
         return plateauExport;

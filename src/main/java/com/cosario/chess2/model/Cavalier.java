@@ -12,4 +12,9 @@ public class Cavalier extends Piece {
         // Todo: Implement the logic for the possible moves of the knight
         return new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "N" : "n";
+    }
 }
