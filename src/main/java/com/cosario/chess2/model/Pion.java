@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 public class Pion extends Piece {
 
-    public Pion(Case caseActuelle, Couleur couleur) {
-        super(couleur, caseActuelle);
-        caseActuelle.placerPiece(this);
+    public Pion(Plateau plateau, Coordonee coordonee, Couleur couleur) {
+        super(plateau, coordonee, couleur);
     }
 
     @Override

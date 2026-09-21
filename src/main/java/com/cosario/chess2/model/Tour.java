@@ -3,8 +3,8 @@ package com.cosario.chess2.model;
 import java.util.ArrayList;
 
 public class Tour extends Piece {
-    public Tour(int x, int y, Couleur couleur) {
-        super(couleur, new Case(new Coordonee(x, y)));
+    public Tour(Plateau plateau, Coordonee coordonee, Couleur couleur) {
+        super(plateau, coordonee, couleur);
     }
 
     @Override
