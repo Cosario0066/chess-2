@@ -12,8 +12,8 @@ public abstract class Piece {
 
     public Piece(Couleur couleur, Case caseActuelle) {
         this.couleur = couleur;
-        this.caseActuelle = caseActuelle;
         this.aDejaBouge = false;
+        this.caseActuelle = caseActuelle;
     }
 
     public Couleur getCouleur() {
@@ -22,6 +22,10 @@ public abstract class Piece {
 
     public Case getCaseActuelle() {
         return caseActuelle;
+    }
+
+    void setCaseActuelle(Case caseActuelle) {
+        this.caseActuelle = caseActuelle;
     }
 
     public boolean isADejaBouge() {

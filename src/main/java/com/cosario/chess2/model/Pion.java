@@ -6,6 +6,7 @@ public class Pion extends Piece {
 
     public Pion(Case caseActuelle, Couleur couleur) {
         super(couleur, caseActuelle);
+        caseActuelle.placerPiece(this);
     }
 
     @Override
@@ -16,13 +17,13 @@ public class Pion extends Piece {
 
         // Déplacement d'une case en avant
         Coordonee coordAvant = new Coordonee(coordActuelle.getX(), coordActuelle.getY() + direction);
-        if (plateau.estCaseVide(coordAvant)) {
+        if (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
             coupsPossibles.add(plateau.getCase(coordAvant));
 
             // Déplacement de deux cases en avant si le pion n'a pas encore bougé
             if (!this.isADejaBouge()) {
                 Coordonee coordDeuxAvant = new Coordonee(coordActuelle.getX(), coordActuelle.getY() + 2 * direction);
-                if (plateau.estCaseVide(coordDeuxAvant)) {
+                if (plateau.estDansPlateau(coordDeuxAvant) && plateau.estCaseVide(coordDeuxAvant)) {
                     coupsPossibles.add(plateau.getCase(coordDeuxAvant));
                 }
             }
@@ -41,6 +42,11 @@ public class Pion extends Piece {
         }
 
         return coupsPossibles;
+    }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "P" : "p";
     }
 
 }

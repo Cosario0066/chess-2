@@ -1,4 +1,15 @@
 package com.cosario.chess2.model;
 
-public class Fou {
+import java.util.ArrayList;
+
+public class Fou extends Piece{
+    public Fou(int x, int y, Couleur couleur) {
+        super(couleur, new Case(new Coordonee(x, y)));
+    }
+
+    @Override
+    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+        // Todo: Implement the logic for the possible moves of the king
+        return new ArrayList<>();
+    }
 }

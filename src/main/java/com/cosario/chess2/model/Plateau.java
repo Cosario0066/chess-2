@@ -7,14 +7,14 @@ public class Plateau {
         grille = new Case[10][10];
     }
 
-    Case getCase(Coordonee coord) {
+    public Case getCase(Coordonee coord) {
         return grille[coord.getX()][coord.getY()];
     }
 
-    void initialisationPlateau() {
+    public void initialisationPlateau() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                grille[i][j] = new Case();
+                grille[i][j] = new Case(new Coordonee(i, j));
             }
         }
     }
@@ -38,5 +38,22 @@ public class Plateau {
 
     public boolean estCaseOccupeeParAdversaire(Coordonee coordDiagDroite, Couleur couleur) {
         return estDansPlateau(coordDiagDroite) && !estCaseVide(coordDiagDroite) && grille[coordDiagDroite.getX()][coordDiagDroite.getY()].getPiece().getCouleur() != couleur;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            sb.append(i).append(" ");
+            for (int j = 0; j < 10; j++) {
+                sb.append(grille[i][j].toString()).append(" ");
+            }
+            sb.append("\n");
+        }
+        sb.append("  ");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i).append(" ");
+        }
+        return sb.toString();
     }
 }
