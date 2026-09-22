@@ -3,7 +3,7 @@ package com.cosario.chess2.model;
 import lombok.Getter;
 
 public class Case {
-
+    // getter
     @Getter
     private Piece piece;
     @Getter
