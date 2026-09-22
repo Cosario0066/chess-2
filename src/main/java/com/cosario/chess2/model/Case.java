@@ -32,10 +32,6 @@ public class Case {
         }
     }
 
-    void placerPiece(Piece piece) {
-        setPiece(piece);
-    }
-
     void retirerPiece() {
         if (piece != null && piece.getCaseActuelle() == this) {
             piece.setCaseActuelle(null);
