@@ -8,7 +8,7 @@ public class Cavalier extends Piece {
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+    public ArrayList<Case> getCoupsPossibles() {
         ArrayList<Case> coupsPossibles = new ArrayList<>();
         Coordonee position = getCaseActuelle().getCoordonee();
         int[][] mouvements = {
@@ -16,7 +16,7 @@ public class Cavalier extends Piece {
                 {-2, 1}, {2, 1}, {-1, 2}, {1, 2}
         };
         for (int[] mouvement : mouvements) {
-            ajouterCoupSiValide(plateau, coupsPossibles,
+            ajouterCoupSiValide(coupsPossibles,
                     position.getX() + mouvement[0], position.getY() + mouvement[1]);
         }
         return coupsPossibles;

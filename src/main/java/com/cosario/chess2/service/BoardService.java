@@ -19,7 +19,7 @@ public class BoardService {
 
     public Plateau createPlateau() {
         Plateau plateau = new Plateau();
-/*
+
         for (int i = 0; i < 10; i++) {
             new Pion(i, 1, Couleur.BLANC, plateau);
             new Pion(i, 8, Couleur.NOIR, plateau);
@@ -44,5 +44,6 @@ public class BoardService {
         new Tour(8, 9, Couleur.NOIR, plateau);
 
         return plateau;
+
     }
 }

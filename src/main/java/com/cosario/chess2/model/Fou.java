@@ -10,9 +10,9 @@ public class Fou extends Piece {
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+    public ArrayList<Case> getCoupsPossibles() {
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        ajouterCoupsEnLigne(plateau, coupsPossibles, new int[][]{
+        ajouterCoupsEnLigne(coupsPossibles, new int[][]{
                 {1, 1}, {1, -1}, {-1, 1}, {-1, -1}
         });
         return coupsPossibles;
