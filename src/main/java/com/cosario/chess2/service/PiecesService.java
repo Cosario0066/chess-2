@@ -18,8 +18,8 @@ public class PiecesService {
     }
 
     public PiecesResponse getPossibleMoves(int x, int y) {
-        Plateau plateau = boardService.createPlateau();
-        Case selectedCase = plateau.getCase(new Coordonnee(x, y));
+        Plateau plateau = boardService.getPlateau();
+        Case selectedCase = plateau.getCase(new Coordonee(x, y));
         Piece piece = selectedCase.getPiece();
 
         if (piece == null) {
