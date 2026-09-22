@@ -19,12 +19,12 @@ public class BoardService {
 
     public Plateau createPlateau() {
         Plateau plateau = new Plateau();
-
+/*
         for (int i = 0; i < 10; i++) {
             new Pion(i, 1, Couleur.BLANC, plateau);
             new Pion(i, 8, Couleur.NOIR, plateau);
         }
-
+*/
         // Créer les rois
         new Roi(5, 0, Couleur.BLANC, plateau);
         new Roi(5, 9, Couleur.NOIR, plateau);

@@ -68,18 +68,21 @@ public class Plateau {
     }
 
     public void afficherPlateau() {
-        for (int i = 0; i < 10; i++) {
+        for (int y = 9; y >= 0; y--) {
+            System.out.print(y + " ");
             for (int j = 0; j < 10; j++) {
-                System.out.print(grille[i][j] + " ");
+                System.out.print(grille[j][y] + " ");
             }
             System.out.println();
         }
+        System.out.print("  ");
+        for (int x = 0; x < 10; x++) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
     }
 
     public boolean estCaseOccupeeParAdversaire(Coordonee coord, Couleur couleur) {
-        System.out.println("case non vide ? " + !estCaseVide(coord));
-        System.out.println("piece de couleur opposé ? " + this.getCase(coord).getPiece().getCouleur());
-        System.out.println("Quelle pièce ? " + this.getCase(coord).getPiece());
         return estDansPlateau(coord) && !estCaseVide(coord) && this.getCase(coord).getPiece().getCouleur() != couleur;
     }
 
@@ -96,16 +99,16 @@ public class Plateau {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            sb.append(i).append(" ");
-            for (int j = 0; j < 10; j++) {
-                sb.append(grille[i][j].toString()).append(" ");
+        for (int y = 9; y >= 0; y--) {
+            sb.append(y).append(" ");
+            for (int x = 0; x < 10; x++) {
+                sb.append(grille[x][y].toString()).append(" ");
             }
             sb.append("\n");
         }
         sb.append("  ");
-        for (int i = 0; i < 10; i++) {
-            sb.append(i).append(" ");
+        for (int x = 0; x < 10; x++) {
+            sb.append(x).append(" ");
         }
         return sb.toString();
     }
