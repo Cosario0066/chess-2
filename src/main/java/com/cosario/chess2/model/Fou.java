@@ -66,4 +66,9 @@ public class Fou extends Piece {
     public String toString() {
         return (this.getCouleur() == Couleur.BLANC) ? "B" : "b";
     }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "B" : "b";
+    }
 }

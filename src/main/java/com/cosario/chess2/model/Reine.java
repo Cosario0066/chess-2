@@ -9,7 +9,12 @@ public class Reine extends Piece {
 
     @Override
     public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
-        // Todo: Implement the logic for the possible moves of the king
+        // Todo: Implement the logic for the possible moves of the queen
         return new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return (this.getCouleur() == Couleur.BLANC) ? "Q" : "q";
     }
 }

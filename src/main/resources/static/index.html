@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -38,51 +39,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 34px;
             border: 1px solid rgba(0,0,0,0.08);
         }
         .light { background: #f2d9a2; }
         .dark { background: #b78a4a; }
+        .piece {
+            font-size: 38px;
+            line-height: 1;
+        }
         .piece.black { color: #111; }
         .piece.white { color: #fafafa; text-shadow: 0 0 2px rgba(0,0,0,0.8); }
     </style>
 </head>
 <body>
 <div class="panel">
-    <h1>Plateau 10x10</h1>
     <div id="board" class="board"></div>
 </div>
 
-<script>
-    async function loadBoard() {
-        const boardEl = document.getElementById('board');
-        try {
-            const response = await fetch('/api/board');
-            const data = await response.json();
-            boardEl.innerHTML = '';
-
-            data.board.forEach((row, y) => {
-                row.forEach((cell, x) => {
-                    const div = document.createElement('div');
-                    const isLight = (x + y) % 2 === 0;
-                    div.className = 'cell ' + (isLight ? 'light' : 'dark');
-
-                    if (cell && cell.trim() !== '') {
-                        const blackPieces = ['♜','♞','♝','♛','♚','♟'];
-                        const pieceClass = blackPieces.includes(cell) ? 'piece black' : 'piece white';
-                        div.innerHTML = '<span class="' + pieceClass + '">' + cell + '</span>';
-                    }
-
-                    boardEl.appendChild(div);
-                });
-            });
-        } catch (error) {
-            boardEl.innerHTML = '<div style="padding:20px;color:red;">Erreur de chargement du plateau</div>';
-            console.error(error);
-        }
-    }
-
-    loadBoard();
-</script>
+<script src="/board.js"></script>
 </body>
 </html>
