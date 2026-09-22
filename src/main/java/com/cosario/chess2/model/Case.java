@@ -9,11 +9,11 @@ public class Case {
     @Getter
     private Piece piece;
     @Getter
-    private Coordonee coordonee;
+    private Coordonnee coordonnee;
 
-    public Case(Coordonee coordonee) {
+    public Case(Coordonnee coordonnee) {
         this.piece = null;
-        this.coordonee = coordonee;
+        this.coordonnee = coordonnee;
     }
 
     public boolean estVide() {

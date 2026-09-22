@@ -2,7 +2,7 @@ package com.cosario.chess2.service;
 
 import com.cosario.chess2.dto.PiecesResponse;
 import com.cosario.chess2.model.Case;
-import com.cosario.chess2.model.Coordonee;
+import com.cosario.chess2.model.Coordonnee;
 import com.cosario.chess2.model.Piece;
 import com.cosario.chess2.model.Plateau;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class PiecesService {
 
     public PiecesResponse getPossibleMoves(int x, int y) {
         Plateau plateau = boardService.createPlateau();
-        Case selectedCase = plateau.getCase(new Coordonee(x, y));
+        Case selectedCase = plateau.getCase(new Coordonnee(x, y));
         Piece piece = selectedCase.getPiece();
 
         if (piece == null) {
@@ -28,7 +28,7 @@ public class PiecesService {
 
         List<Case> possibleCases = piece.getCoupsPossibles();
         String[] possibleMoves = possibleCases.stream()
-                .map(Case::getCoordonee)
+                .map(Case::getCoordonnee)
                 .map(coord -> coord.getX() + "," + coord.getY())
                 .toArray(String[]::new);
         return new PiecesResponse(possibleMoves);

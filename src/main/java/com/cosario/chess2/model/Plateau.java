@@ -1,6 +1,5 @@
 package com.cosario.chess2.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Plateau {
@@ -10,12 +9,12 @@ public class Plateau {
         grille = new Case[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                grille[i][j] = new Case(new Coordonee(i, j));
+                grille[i][j] = new Case(new Coordonnee(i, j));
             }
         }
     }
 
-    public Case getCase(Coordonee coord) {
+    public Case getCase(Coordonnee coord) {
         if (!estDansPlateau(coord)) {
             throw new IllegalArgumentException("Coordonnée hors du plateau : " + coord);
         }
@@ -29,20 +28,20 @@ public class Plateau {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (grille[i][j] == null) {
-                    grille[i][j] = new Case(new Coordonee(i, j));
+                    grille[i][j] = new Case(new Coordonnee(i, j));
                 }
             }
         }
     }
 
-    public boolean estCaseVide(Coordonee coord) {
+    public boolean estCaseVide(Coordonnee coord) {
         if (!estDansPlateau(coord)) {
             return false;
         }
         return this.getCase(coord).estVide();
     }
 
-    public boolean estDansPlateau(Coordonee coord) {
+    public boolean estDansPlateau(Coordonnee coord) {
         return coord.getX() >= 0 && coord.getX() < 10 && coord.getY() >= 0 && coord.getY() < 10;
     }
 
@@ -61,7 +60,7 @@ public class Plateau {
         System.out.println();
     }
 
-    public boolean estCaseOccupeeParAdversaire(Coordonee coord, Couleur couleur) {
+    public boolean estCaseOccupeeParAdversaire(Coordonnee coord, Couleur couleur) {
         return estDansPlateau(coord) && !estCaseVide(coord) && this.getCase(coord).getPiece().getCouleur() != couleur;
     }
 
@@ -92,12 +91,36 @@ public class Plateau {
         return sb.toString();
     }
 
-    public void deplacementPiece(Piece piece, Coordonee newCoord){
+    public void deplacementPiece(Piece piece, Coordonnee newCoord){
         List<Case> coupsPossibles = piece.getCoupsPossibles();
         if (coupsPossibles.contains(this.getCase(newCoord))){
             piece.getCaseActuelle().retirerPiece();
             this.getCase(newCoord).setPiece(piece);
+            piece.setADejaBouge(true);
         }
 
+    }
+
+    public void initialisationPiece() {
+        for (int i = 0; i < 10; i++) {
+            new Pion(i, 1, Couleur.BLANC, this);
+            new Pion(i, 8, Couleur.NOIR, this);
+        }
+        new Roi(5, 0, Couleur.BLANC, this);
+        new Roi(5, 9, Couleur.NOIR, this);
+        new Reine(4, 0, Couleur.BLANC, this);
+        new Reine(4, 9, Couleur.NOIR, this);
+        new Fou(3, 0, Couleur.BLANC, this);
+        new Fou(6, 0, Couleur.BLANC, this);
+        new Fou(3, 9, Couleur.NOIR, this);
+        new Fou(6, 9, Couleur.NOIR, this);
+        new Cavalier(2, 0, Couleur.BLANC, this);
+        new Cavalier(7, 0, Couleur.BLANC, this);
+        new Cavalier(2, 9, Couleur.NOIR, this);
+        new Cavalier(7, 9, Couleur.NOIR, this);
+        new Tour(1, 0, Couleur.BLANC, this);
+        new Tour(8, 0, Couleur.BLANC, this);
+        new Tour(1, 9, Couleur.NOIR, this);
+        new Tour(8, 9, Couleur.NOIR, this);
     }
 }

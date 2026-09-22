@@ -1,10 +1,10 @@
 package com.cosario.chess2.model;
 
-public class Coordonee {
+public class Coordonnee {
     private int x;
     private int y;
 
-    public Coordonee(int x, int y) {
+    public Coordonnee(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -22,7 +22,7 @@ public class Coordonee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Coordonee that = (Coordonee) o;
+        Coordonnee that = (Coordonnee) o;
         return x == that.x && y == that.y;
     }
 

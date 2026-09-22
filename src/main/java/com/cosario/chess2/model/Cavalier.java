@@ -10,7 +10,7 @@ public class Cavalier extends Piece {
     @Override
     public ArrayList<Case> getCoupsPossibles() {
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        Coordonee position = getCaseActuelle().getCoordonee();
+        Coordonnee position = getCaseActuelle().getCoordonnee();
         int[][] mouvements = {
                 {-1, -2}, {1, -2}, {-2, -1}, {2, -1},
                 {-2, 1}, {2, 1}, {-1, 2}, {1, 2}

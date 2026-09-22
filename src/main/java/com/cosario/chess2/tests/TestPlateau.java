@@ -9,12 +9,12 @@ public class TestPlateau {
         Pion p1 = new Pion(1, 0, Couleur.BLANC, p);
         System.out.println(p);
         for (Case c : p1.getCoupsPossibles()) {
-            System.out.println(c.getCoordonee());
+            System.out.println(c.getCoordonnee());
         }
 
-        p.deplacementPiece(p1, new Coordonee(5,5));
+        p.deplacementPiece(p1, new Coordonnee(5,5));
         System.out.println(p);
-        p.deplacementPiece(p1, new Coordonee(1,2));
+        p.deplacementPiece(p1, new Coordonnee(1,2));
         System.out.println(p);
 
     }
