@@ -8,9 +8,12 @@ public class Tour extends Piece {
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles() {
-        // TODO: Implement the logic for the possible moves of the rook
-        return new ArrayList<>();
+    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+        ArrayList<Case> coupsPossibles = new ArrayList<>();
+        ajouterCoupsEnLigne(plateau, coupsPossibles, new int[][]{
+                {1, 0}, {-1, 0}, {0, 1}, {0, -1}
+        });
+        return coupsPossibles;
     }
 
     @Override

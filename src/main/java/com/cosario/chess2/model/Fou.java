@@ -10,74 +10,12 @@ public class Fou extends Piece {
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles() {
-        Plateau plateau = this.getPlateau();
+    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        Coordonee coordActuelle = this.getCaseActuelle().getCoordonee();
-
-        //Déplacement diagonale avant gauche
-        Coordonee coordAvant = new Coordonee(coordActuelle.getX() - 1, coordActuelle.getY() + 1);
-        while (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-            coordAvant = new Coordonee(coordAvant.getX() - 1, coordAvant.getY() + 1);
-        }
-        if (plateau.estDansPlateau(coordAvant)) {
-            System.out.println(plateau.getCase(coordAvant));
-            System.out.println(plateau.estCaseOccupeeParAdversaire(coordAvant, this.getCouleur()));
-        }
-        if (plateau.estDansPlateau(coordAvant) && plateau.estCaseOccupeeParAdversaire(coordAvant, this.getCouleur())) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-        }
-
-        //Déplacement diagonale avant droite
-        coordAvant = new Coordonee(coordActuelle.getX() + 1, coordActuelle.getY() + 1);
-        while (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-            coordAvant = new Coordonee(coordAvant.getX() + 1, coordAvant.getY() + 1);
-        }
-        if (plateau.estDansPlateau(coordAvant)) {
-            System.out.println(plateau.getCase(coordAvant));
-            System.out.println(plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur()));
-        }
-        if (plateau.estDansPlateau(coordAvant) && plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur())) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-        }
-
-        //Déplacement diagonale arriere gauche
-        coordAvant = new Coordonee(coordActuelle.getX() - 1, coordActuelle.getY() - 1);
-        while (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-            coordAvant = new Coordonee(coordAvant.getX() - 1, coordAvant.getY() - 1);
-        }
-        if (plateau.estDansPlateau(coordAvant)) {
-            System.out.println(plateau.getCase(coordAvant));
-            System.out.println(plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur()));
-        }
-        if (plateau.estDansPlateau(coordAvant) && plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur())) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-        }
-
-        //Déplacement diagonale arriere droite
-        coordAvant = new Coordonee(coordActuelle.getX() + 1, coordActuelle.getY() - 1);
-        while (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-            coordAvant = new Coordonee(coordAvant.getX() + 1, coordAvant.getY() - 1);
-        }
-        if (plateau.estDansPlateau(coordAvant)) {
-            System.out.println(plateau.getCase(coordAvant));
-            System.out.println(plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur()));
-        }
-        if (plateau.estDansPlateau(coordAvant) && plateau.estCaseOccupeeParAdversaire(coordActuelle, this.getCouleur())) {
-            coupsPossibles.add(plateau.getCase(coordAvant));
-        }
-
+        ajouterCoupsEnLigne(plateau, coupsPossibles, new int[][]{
+                {1, 1}, {1, -1}, {-1, 1}, {-1, -1}
+        });
         return coupsPossibles;
-    }
-
-
-    @Override
-    public Couleur getCouleur() {
-        return super.getCouleur();
     }
 
     @Override

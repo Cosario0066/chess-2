@@ -11,10 +11,15 @@ import java.util.List;
 public class BoardService {
 
     public BoardResponse getBoard() {
-        int size = 10;
-        Plateau plateau = new Plateau();
+        Plateau plateau = createPlateau();
 
-        // Créer des pions blancs et noirs
+        String[][] board = plateau.exporterPlateau();
+        return new BoardResponse(10, board);
+    }
+
+    public Plateau createPlateau() {
+        Plateau plateau = new Plateau();
+/*
         for (int i = 0; i < 10; i++) {
             new Pion(i, 1, Couleur.BLANC, plateau);
             new Pion(i, 8, Couleur.NOIR, plateau);
@@ -38,7 +43,6 @@ public class BoardService {
         new Tour(1, 9, Couleur.NOIR, plateau);
         new Tour(8, 9, Couleur.NOIR, plateau);
 
-        String[][] board = plateau.exporterPlateau();
-        return new BoardResponse(size, board);
+        return plateau;
     }
 }

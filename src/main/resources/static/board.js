@@ -1,3 +1,30 @@
+async function getPossibleMoves(x, y) {
+    const response = await fetch(`/api/possible-moves?x=${x}&y=${y}`);
+    if (!response.ok) {
+        throw new Error(`Impossible de récupérer les mouvements (${response.status})`);
+    }
+    return (await response.json()).possibleMoves
+        .map((move) => move.split(',').map(Number));
+}
+
+function clearHighlights() {
+    document.querySelectorAll('.cell.selected, .cell.possible-move')
+        .forEach((cell) => cell.classList.remove('selected', 'possible-move'));
+}
+
+async function selectPiece(x, y, cellElement) {
+    clearHighlights();
+    cellElement.classList.add('selected');
+
+    const possibleMoves = await getPossibleMoves(x, y);
+    possibleMoves.forEach(([moveX, moveY]) => {
+        const targetCell = document.querySelector(`[data-x="${moveX}"][data-y="${moveY}"]`);
+        if (targetCell) {
+            targetCell.classList.add('possible-move');
+        }
+    });
+}
+
 async function loadBoard() {
     const boardElement = document.getElementById('board');
     const pieceIcons = {
@@ -36,6 +63,15 @@ async function loadBoard() {
                 const isLight = (x + y) % 2 === 0;
 
                 cellElement.className = `cell ${isLight ? 'light' : 'dark'}`;
+                cellElement.dataset.x = x;
+                cellElement.dataset.y = y;
+                cellElement.addEventListener('click', () => {
+                    if (cell && cell !== '.') {
+                        selectPiece(x, y, cellElement).catch(console.error);
+                    } else {
+                        clearHighlights();
+                    }
+                });
 
                 if (cell && cell !== '.') {
                     const pieceElement = document.createElement('i');

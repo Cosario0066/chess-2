@@ -8,9 +8,18 @@ public class Cavalier extends Piece {
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles() {
-        // Todo: Implement the logic for the possible moves of the knight
-        return new ArrayList<>();
+    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+        ArrayList<Case> coupsPossibles = new ArrayList<>();
+        Coordonee position = getCaseActuelle().getCoordonee();
+        int[][] mouvements = {
+                {-1, -2}, {1, -2}, {-2, -1}, {2, -1},
+                {-2, 1}, {2, 1}, {-1, 2}, {1, 2}
+        };
+        for (int[] mouvement : mouvements) {
+            ajouterCoupSiValide(plateau, coupsPossibles,
+                    position.getX() + mouvement[0], position.getY() + mouvement[1]);
+        }
+        return coupsPossibles;
     }
 
     @Override

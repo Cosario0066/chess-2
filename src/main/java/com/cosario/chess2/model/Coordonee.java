@@ -27,11 +27,6 @@ public class Coordonee {
     }
 
     @Override
-    public int hashCode() {
-        return java.util.Objects.hash(x, y);
-    }
-
-    @Override
     public String toString() {
         return "(" + x + ", " + y + ")";
     }

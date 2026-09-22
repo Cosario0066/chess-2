@@ -40,12 +40,30 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(0,0,0,0.08);
+            box-sizing: border-box;
+            cursor: pointer;
+            position: relative;
         }
         .light { background: #f2d9a2; }
         .dark { background: #b78a4a; }
+        .cell.selected {
+            box-shadow: inset 0 0 0 4px #f7d354;
+        }
+        .cell.possible-move::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(35, 115, 55, 0.75);
+            position: absolute;
+        }
+        .cell.possible-capture {
+            box-shadow: inset 0 0 0 4px rgba(180, 45, 35, 0.85);
+        }
         .piece {
             font-size: 38px;
             line-height: 1;
+            pointer-events: none;
         }
         .piece.black { color: #111; }
         .piece.white { color: #fafafa; text-shadow: 0 0 2px rgba(0,0,0,0.8); }
