@@ -1,5 +1,8 @@
 package com.cosario.chess2.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Plateau {
     private Case[][] grille;
 
@@ -11,30 +14,6 @@ public class Plateau {
             }
         }
     }
-
-    public void placerPiece(Piece piece) {
-        if (piece != null && piece.getCoordoneeActuelle() != null) {
-            Coordonee coordonee = piece.getCoordoneeActuelle();
-            if (this.estDansPlateau(coordonee)) {
-                Case caseActuelle = this.getCase(coordonee);
-                if (!this.estCaseOccupeeParAdversaire(coordonee, piece.getCouleur())) {
-                    caseActuelle.setPiece(piece);
-                }
-            }
-        }
-    }
-
-
-    public void retirerPiece(Piece piece) {
-        if (piece != null && piece.getCoordoneeActuelle() != null) {
-            Coordonee coordonee = piece.getCoordoneeActuelle();
-            if (this.estDansPlateau(coordonee)) {
-                Case caseActuelle = this.getCase(coordonee);
-                caseActuelle.setPiece(null);
-            }
-        }
-    }
-
 
     public Case getCase(Coordonee coord) {
         if (!estDansPlateau(coord)) {
@@ -77,9 +56,6 @@ public class Plateau {
     }
 
     public boolean estCaseOccupeeParAdversaire(Coordonee coord, Couleur couleur) {
-        System.out.println("case non vide ? " + !estCaseVide(coord));
-        System.out.println("piece de couleur opposé ? " + this.getCase(coord).getPiece().getCouleur());
-        System.out.println("Quelle pièce ? " + this.getCase(coord).getPiece());
         return estDansPlateau(coord) && !estCaseVide(coord) && this.getCase(coord).getPiece().getCouleur() != couleur;
     }
 
@@ -108,5 +84,14 @@ public class Plateau {
             sb.append(i).append(" ");
         }
         return sb.toString();
+    }
+
+    public void deplacementPiece(Piece piece, Coordonee newCoord){
+        List<Case> coupsPossibles = piece.getCoupsPossibles();
+        if (coupsPossibles.contains(this.getCase(newCoord))){
+            piece.getCaseActuelle().retirerPiece();
+            this.getCase(newCoord).setPiece(piece);
+        }
+
     }
 }

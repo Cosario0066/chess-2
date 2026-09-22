@@ -25,7 +25,6 @@ public class BoardService {
             new Pion(i, 8, Couleur.NOIR, plateau);
         }
 
-        // Créer les rois
         new Roi(5, 0, Couleur.BLANC, plateau);
         new Roi(5, 9, Couleur.NOIR, plateau);
         new Reine(4, 0, Couleur.BLANC, plateau);
