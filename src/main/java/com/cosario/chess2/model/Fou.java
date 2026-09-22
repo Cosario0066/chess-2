@@ -9,8 +9,11 @@ public class Fou extends Piece{
 
     @Override
     public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
-        // Todo: Implement the logic for the possible moves of the bishop
-        return new ArrayList<>();
+        ArrayList<Case> coupsPossibles = new ArrayList<>();
+        ajouterCoupsEnLigne(plateau, coupsPossibles, new int[][]{
+                {1, 1}, {1, -1}, {-1, 1}, {-1, -1}
+        });
+        return coupsPossibles;
     }
 
     @Override
