@@ -57,7 +57,8 @@ async function loadBoard() {
         boardElement.style.gridTemplateColumns = `repeat(${size}, 52px)`;
         boardElement.style.gridTemplateRows = `repeat(${size}, 52px)`;
 
-        data.board.forEach((row, y) => {
+        data.board.forEach((row, displayRow) => {
+            const y = size - 1 - displayRow;
             row.forEach((cell, x) => {
                 const cellElement = document.createElement('div');
                 const isLight = (x + y) % 2 === 0;
