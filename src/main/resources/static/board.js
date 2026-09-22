@@ -9,7 +9,10 @@ async function getPossibleMoves(x, y) {
 
 function clearHighlights() {
     document.querySelectorAll('.cell.selected, .cell.possible-move')
-        .forEach((cell) => cell.classList.remove('selected', 'possible-move'));
+        .forEach((cell) => {
+            cell.classList.remove('selected', 'possible-move');
+            cell.onclick = null;
+        });
 }
 
 async function selectPiece(x, y, cellElement) {
@@ -21,8 +24,23 @@ async function selectPiece(x, y, cellElement) {
         const targetCell = document.querySelector(`[data-x="${moveX}"][data-y="${moveY}"]`);
         if (targetCell) {
             targetCell.classList.add('possible-move');
+            targetCell.onclick = () => movePiece(x, y, moveX, moveY).catch(console.error);
         }
     });
+}
+
+async function movePiece(fromX, fromY, toX, toY) {
+    const response = await fetch('/api/move', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fromX, fromY, toX, toY })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Impossible de déplacer la pièce (${response.status})`);
+    }
+
+    await loadBoard();
 }
 
 async function loadBoard() {
@@ -59,7 +77,8 @@ async function loadBoard() {
 
         data.board.forEach((row, displayRow) => {
             const y = size - 1 - displayRow;
-            row.forEach((cell, x) => {
+            row.forEach((cell, displayColumn) => {
+                const x = size - 1 - displayColumn;
                 const cellElement = document.createElement('div');
                 const isLight = (x + y) % 2 === 0;
 
@@ -67,6 +86,9 @@ async function loadBoard() {
                 cellElement.dataset.x = x;
                 cellElement.dataset.y = y;
                 cellElement.addEventListener('click', () => {
+                    if (cellElement.classList.contains('possible-move')) {
+                        return;
+                    }
                     if (cell && cell !== '.') {
                         selectPiece(x, y, cellElement).catch(console.error);
                     } else {

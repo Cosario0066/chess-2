@@ -1,6 +1,5 @@
 package com.cosario.chess2.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Plateau {
@@ -49,13 +48,13 @@ public class Plateau {
     public void afficherPlateau() {
         for (int y = 9; y >= 0; y--) {
             System.out.print(y + " ");
-            for (int j = 0; j < 10; j++) {
-                System.out.print(grille[j][y] + " ");
+            for (int x = 9; x >= 0; x--) {
+                System.out.print(grille[x][y] + " ");
             }
             System.out.println();
         }
         System.out.print("  ");
-        for (int x = 0; x < 10; x++) {
+        for (int x = 9; x >= 0; x--) {
             System.out.print(x + " ");
         }
         System.out.println();
@@ -67,9 +66,11 @@ public class Plateau {
 
     public String [][] exporterPlateau() {
         String[][] plateauExport = new String[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                plateauExport[j][i] = grille[i][j].toString();
+        for (int displayRow = 0; displayRow < 10; displayRow++) {
+            int y = 9 - displayRow;
+            for (int displayX = 0; displayX < 10; displayX++) {
+                int x = 9 - displayX;
+                plateauExport[displayRow][displayX] = grille[x][y].toString();
             }
         }
         return plateauExport;
@@ -80,24 +81,31 @@ public class Plateau {
         StringBuilder sb = new StringBuilder();
         for (int y = 9; y >= 0; y--) {
             sb.append(y).append(" ");
-            for (int x = 0; x < 10; x++) {
+            for (int x = 9; x >= 0; x--) {
                 sb.append(grille[x][y].toString()).append(" ");
             }
             sb.append("\n");
         }
         sb.append("  ");
-        for (int x = 0; x < 10; x++) {
+        for (int x = 9; x >= 0; x--) {
             sb.append(x).append(" ");
         }
         return sb.toString();
     }
 
-    public void deplacementPiece(Piece piece, Coordonee newCoord){
-        List<Case> coupsPossibles = piece.getCoupsPossibles();
-        if (coupsPossibles.contains(this.getCase(newCoord))){
-            piece.getCaseActuelle().retirerPiece();
-            this.getCase(newCoord).setPiece(piece);
+    public void deplacementPiece(Piece piece, Coordonee newCoord) {
+        if (piece == null) {
+            throw new IllegalArgumentException("Aucune pièce sur la case de départ");
         }
 
+        List<Case> coupsPossibles = piece.getCoupsPossibles();
+        Case target = this.getCase(newCoord);
+        if (!coupsPossibles.contains(target)) {
+            throw new IllegalArgumentException("Déplacement impossible vers " + newCoord);
+        }
+
+        piece.getCaseActuelle().retirerPiece();
+        target.setPiece(piece);
+        piece.setADejaBouge(true);
     }
 }
