@@ -6,20 +6,20 @@ public class TestRoi {
     public static void main(String[] args) {
         Plateau plateau = new Plateau();
 
-        Roi roi = new Roi(plateau, new Coordonee(4, 4), Couleur.BLANC);
+        Roi roi = new Roi(4, 4, Couleur.BLANC, plateau);
 
         // Une case alliée ne doit pas être proposée comme destination.
-        Pion pieceAlliee = new Pion(plateau, new Coordonee(3, 3), Couleur.BLANC);
+        Pion pieceAlliee = new Pion(3, 3, Couleur.BLANC, plateau);
         // Une case ennemie doit rester accessible pour une capture.
-        Pion pieceAdverse = new Pion(plateau, new Coordonee(5, 5), Couleur.NOIR);
+        Pion pieceAdverse = new Pion(5, 5, Couleur.NOIR, plateau);
 
 
         System.out.println("Plateau après placement du roi et des pièces :");
         System.out.println(plateau);
 
         System.out.println("Coups possibles pour le roi blanc :");
-        for (Case casePossible : roi.getCoupsPossibles(plateau)) {
-            System.out.println(casePossible.getCoordonee());
+        for (Case casePossible : roi.getCoupsPossibles()) {
+            System.out.print(casePossible.getCoordonee());
         }
 
     }

@@ -26,7 +26,7 @@ public class PiecesService {
             return new PiecesResponse(new String[0]);
         }
 
-        List<Case> possibleCases = piece.getCoupsPossibles(plateau);
+        List<Case> possibleCases = piece.getCoupsPossibles();
         String[] possibleMoves = possibleCases.stream()
                 .map(Case::getCoordonee)
                 .map(coord -> coord.getX() + "," + coord.getY())

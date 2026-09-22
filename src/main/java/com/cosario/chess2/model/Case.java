@@ -1,9 +1,11 @@
 package com.cosario.chess2.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Case {
-    // getter
+
+    @Setter
     @Getter
     private Piece piece;
     @Getter

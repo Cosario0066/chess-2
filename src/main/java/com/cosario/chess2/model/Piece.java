@@ -1,39 +1,39 @@
 package com.cosario.chess2.model;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
 public abstract class Piece {
-    private Couleur couleur;
+    @Getter
+    private final Couleur couleur;
+    @Getter
+    @Setter
     private Case caseActuelle;
+    @Getter
+    private Plateau plateau;
     @Setter
     private boolean aDejaBouge;
 
-    public Piece(Plateau plateau, Coordonee coordonee, Couleur couleur) {
+    public Piece(Couleur couleur, int x, int y, Plateau plateau) {
         this.couleur = couleur;
         this.aDejaBouge = false;
-        this.caseActuelle = plateau.getCase(coordonee);
+        this.plateau = plateau;
+        this.caseActuelle = plateau.getCase(x,y);
         this.caseActuelle.setPiece(this);
     }
 
-    public Couleur getCouleur() {
-        return couleur;
-    }
-
-    public Case getCaseActuelle() {
-        return caseActuelle;
-    }
-
-    void setCaseActuelle(Case caseActuelle) {
-        this.caseActuelle = caseActuelle;
+    public Coordonee getCoordoneeActuelle() {
+        return caseActuelle.getCoordonee();
     }
 
     public boolean isADejaBouge() {
         return aDejaBouge;
     }
 
-    protected void ajouterCoupSiValide(Plateau plateau, List<Case> coups, int x, int y) {
+    protected void ajouterCoupSiValide(List<Case> coups, int x, int y) {
+        Plateau plateau = this.getPlateau();
         Coordonee coordonnee = new Coordonee(x, y);
         if (!plateau.estDansPlateau(coordonnee)) {
             return;
@@ -44,7 +44,8 @@ public abstract class Piece {
         }
     }
 
-    protected void ajouterCoupsEnLigne(Plateau plateau, List<Case> coups, int[][] directions) {
+    protected void ajouterCoupsEnLigne(List<Case> coups, int[][] directions) {
+        Plateau plateau = this.getPlateau();
         Coordonee position = caseActuelle.getCoordonee();
         for (int[] direction : directions) {
             int x = position.getX() + direction[0];
@@ -65,6 +66,6 @@ public abstract class Piece {
         }
     }
 
-    public abstract List<Case> getCoupsPossibles(Plateau plateau);
+    public abstract List<Case> getCoupsPossibles();
 
 }
