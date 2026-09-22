@@ -19,7 +19,7 @@ public class TestRoi {
 
         System.out.println("Coups possibles pour le roi blanc :");
         for (Case casePossible : roi.getCoupsPossibles()) {
-            System.out.print(casePossible.getCoordonee());
+            System.out.print(casePossible.getCoordonnee());
         }
 
     }

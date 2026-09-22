@@ -1,28 +1,36 @@
 package com.cosario.chess2.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import java.util.ArrayList;
 
 public class Pion extends Piece {
+    private boolean enPassant;
 
     public Pion(int x, int y, Couleur couleur, Plateau plateau) {
         super(couleur, x, y, plateau);
+        this.enPassant = false;
+    }
+
+    public boolean getEnPassant(){
+        return this.enPassant;
     }
 
     @Override
     public ArrayList<Case> getCoupsPossibles() {
         Plateau plateau = this.getPlateau();
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        Coordonee coordActuelle = this.getCoordoneeActuelle();
+        Coordonnee coordActuelle = this.getCoordoneeActuelle();
         int direction = (this.getCouleur() == Couleur.BLANC) ? 1 : -1;
 
         // Déplacement d'une case en avant
-        Coordonee coordAvant = new Coordonee(coordActuelle.getX(), coordActuelle.getY() + direction);
+        Coordonnee coordAvant = new Coordonnee(coordActuelle.getX(), coordActuelle.getY() + direction);
         if (plateau.estDansPlateau(coordAvant) && plateau.estCaseVide(coordAvant)) {
             coupsPossibles.add(plateau.getCase(coordAvant));
 
             // Déplacement de deux cases en avant si le pion n'a pas encore bougé
             if (!this.isADejaBouge()) {
-                Coordonee coordDeuxAvant = new Coordonee(coordActuelle.getX(), coordActuelle.getY() + 2 * direction);
+                Coordonnee coordDeuxAvant = new Coordonnee(coordActuelle.getX(), coordActuelle.getY() + 2 * direction);
                 if (plateau.estDansPlateau(coordDeuxAvant) && plateau.estCaseVide(coordDeuxAvant)) {
                     coupsPossibles.add(plateau.getCase(coordDeuxAvant));
                 }

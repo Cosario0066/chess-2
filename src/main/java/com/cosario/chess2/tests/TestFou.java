@@ -1,10 +1,6 @@
 package com.cosario.chess2.tests;
 
-import com.cosario.chess2.Chess2Application;
 import com.cosario.chess2.model.*;
-import org.springframework.boot.SpringApplication;
-
-import java.util.ArrayList;
 
 public class TestFou {
     public static void main(String[] args) {
@@ -29,7 +25,7 @@ public class TestFou {
         System.out.println(p);
 
         for (Case c : f.getCoupsPossibles()) {
-            System.out.print(c.getCoordonee());
+            System.out.print(c.getCoordonnee());
         }
     }
 }

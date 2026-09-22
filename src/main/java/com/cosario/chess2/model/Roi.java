@@ -12,7 +12,7 @@ public class Roi extends Piece {
         // init
         Plateau plateau = this.getPlateau();
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        Coordonee coordActuelle = this.getCaseActuelle().getCoordonee();
+        Coordonnee coordActuelle = this.getCaseActuelle().getCoordonnee();
 
         // directions possibles du roi
         int[][] directions = {
@@ -25,7 +25,7 @@ public class Roi extends Piece {
         for  (int[] direction : directions) {
             int newX = coordActuelle.getX() + direction[0];
             int newY = coordActuelle.getY() + direction[1];
-            Coordonee nouvelleCoordonnee = new Coordonee(newX, newY);
+            Coordonnee nouvelleCoordonnee = new Coordonnee(newX, newY);
             if (!plateau.estDansPlateau(nouvelleCoordonnee)) {
                 continue;
             }

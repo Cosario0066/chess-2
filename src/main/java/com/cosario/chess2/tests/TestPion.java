@@ -12,7 +12,7 @@ public class TestPion {
         System.out.println("Pion blanc : " + pionBlanc);
 
         // Créer un pion noir
-        Pion pionNoir = new Pion(0, 1, Couleur.NOIR, plateau);
+        Pion pionNoir = new Pion(1, 9, Couleur.NOIR, plateau);
         System.out.println("Pion noir : " + pionNoir);
 
         // Test de la méthode de déplacement du pion
@@ -22,13 +22,13 @@ public class TestPion {
         // Test des coups possibles pour le pion blanc
         System.out.println("Coups possibles pour le pion blanc :");
         for (Case c : pionBlanc.getCoupsPossibles()) {
-            System.out.println(c.getCoordonee());
+            System.out.println(c.getCoordonnee());
         }
 
         // Test des coups possibles pour le pion noir
         System.out.println("Coups possibles pour le pion noir :");
         for (Case c : pionNoir.getCoupsPossibles()) {
-            System.out.println(c.getCoordonee());
+            System.out.println(c.getCoordonnee());
         }
     }
 }
