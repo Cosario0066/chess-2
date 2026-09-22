@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 public class Pion extends Piece {
 
-    public Pion(Case caseActuelle, Couleur couleur) {
-        super(couleur, caseActuelle);
-        caseActuelle.placerPiece(this);
+    public Pion(int x, int y, Couleur couleur) {
+        super(couleur, x, y);
     }
 
     @Override
     public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
         ArrayList<Case> coupsPossibles = new ArrayList<>();
-        Coordonee coordActuelle = this.getCaseActuelle().getCoordonee();
+        Coordonee coordActuelle = this.getCoordoneeActuelle();
         int direction = (this.getCouleur() == Couleur.BLANC) ? 1 : -1;
 
         // Déplacement d'une case en avant

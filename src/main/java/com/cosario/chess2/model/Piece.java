@@ -6,26 +6,26 @@ import java.util.List;
 
 public abstract class Piece {
     private Couleur couleur;
-    private Case caseActuelle;
+    private Coordonee coordoneeActuelle;
     @Setter
     private boolean aDejaBouge;
 
-    public Piece(Couleur couleur, Case caseActuelle) {
+    public Piece(Couleur couleur, int x, int y) {
         this.couleur = couleur;
         this.aDejaBouge = false;
-        this.caseActuelle = caseActuelle;
+        this.coordoneeActuelle = new Coordonee(x,y);
     }
 
     public Couleur getCouleur() {
         return couleur;
     }
 
-    public Case getCaseActuelle() {
-        return caseActuelle;
+    public Coordonee getCoordoneeActuelle() {
+        return coordoneeActuelle;
     }
 
-    void setCaseActuelle(Case caseActuelle) {
-        this.caseActuelle = caseActuelle;
+    void setCoordoneeActuelle(Coordonee coordoneeActuelle) {
+        this.coordoneeActuelle = coordoneeActuelle;
     }
 
     public boolean isADejaBouge() {

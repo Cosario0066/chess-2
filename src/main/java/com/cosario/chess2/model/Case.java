@@ -1,9 +1,11 @@
 package com.cosario.chess2.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Case {
 
+    @Setter
     @Getter
     private Piece piece;
     @Getter
@@ -18,30 +20,6 @@ public class Case {
         return piece == null;
     }
 
-    public void setPiece(Piece piece) {
-        if (this.piece != null && this.piece != piece && this.piece.getCaseActuelle() == this) {
-            this.piece.setCaseActuelle(null);
-        }
-        this.piece = piece;
-        if (piece != null && piece.getCaseActuelle() != this) {
-            Case ancienneCase = piece.getCaseActuelle();
-            if (ancienneCase != null && ancienneCase.piece == piece) {
-                ancienneCase.piece = null;
-            }
-            piece.setCaseActuelle(this);
-        }
-    }
-
-    void placerPiece(Piece piece) {
-        setPiece(piece);
-    }
-
-    void retirerPiece() {
-        if (piece != null && piece.getCaseActuelle() == this) {
-            piece.setCaseActuelle(null);
-        }
-        this.piece = null;
-    }
 
     @Override
     public String toString() {

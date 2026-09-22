@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Roi extends Piece {
     public Roi(int x, int y, Couleur couleur) {
-        super(couleur, new Case(new Coordonee(x, y)));
+        super(couleur, x, y);
     }
 
     @Override

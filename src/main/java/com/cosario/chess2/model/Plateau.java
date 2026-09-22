@@ -7,8 +7,35 @@ public class Plateau {
         grille = new Case[10][10];
     }
 
+    public void placerPiece(Piece piece) {
+        if (piece != null && piece.getCoordoneeActuelle() != null) {
+            Coordonee coordonee = piece.getCoordoneeActuelle();
+            if (this.estDansPlateau(coordonee)) {
+                Case caseActuelle = this.getCase(coordonee);
+                if (!this.estCaseOccupeeParAdversaire(coordonee, piece.getCouleur())) {
+                    caseActuelle.setPiece(piece);
+                }
+            }
+        }
+    }
+
+
+    public void retirerPiece(Piece piece) {
+        if (piece != null && piece.getCoordoneeActuelle() != null) {
+            Coordonee coordonee = piece.getCoordoneeActuelle();
+            if (this.estDansPlateau(coordonee)) {
+                Case caseActuelle = this.getCase(coordonee);
+                caseActuelle.setPiece(null);
+            }
+        }
+    }
+
+
     public Case getCase(Coordonee coord) {
         return grille[coord.getX()][coord.getY()];
+    }
+    public Case getCase(int x, int y) {
+        return grille[x][y];
     }
 
     public void initialisationPlateau() {

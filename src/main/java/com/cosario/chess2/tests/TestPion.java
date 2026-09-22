@@ -6,12 +6,12 @@ public class TestPion {
 
         // Test de la classe Pion
         // Créer un pion blanc
-        Pion pionBlanc = new Pion(new Case(new Coordonee(0, 0)), Couleur.BLANC);
+        Pion pionBlanc = new Pion(0, 0, Couleur.BLANC);
 
         System.out.println("Pion blanc : " + pionBlanc);
 
         // Créer un pion noir
-        Pion pionNoir = new Pion(new Case(new Coordonee(0, 1)), Couleur.NOIR);
+        Pion pionNoir = new Pion(0, 1, Couleur.NOIR);
         System.out.println("Pion noir : " + pionNoir);
 
         // Test de la méthode de déplacement du pion
