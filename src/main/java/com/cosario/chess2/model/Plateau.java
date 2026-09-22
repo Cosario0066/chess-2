@@ -60,7 +60,7 @@ public class Plateau {
         if (!estDansPlateau(coord)) {
             return false;
         }
-        return grille[coord.getX()][coord.getY()].estVide();
+        return this.getCase(coord).estVide();
     }
 
     public boolean estDansPlateau(Coordonee coord) {
@@ -76,8 +76,11 @@ public class Plateau {
         }
     }
 
-    public boolean estCaseOccupeeParAdversaire(Coordonee coordDiagDroite, Couleur couleur) {
-        return estDansPlateau(coordDiagDroite) && !estCaseVide(coordDiagDroite) && grille[coordDiagDroite.getX()][coordDiagDroite.getY()].getPiece().getCouleur() != couleur;
+    public boolean estCaseOccupeeParAdversaire(Coordonee coord, Couleur couleur) {
+        System.out.println("case non vide ? " + !estCaseVide(coord));
+        System.out.println("piece de couleur opposé ? " + this.getCase(coord).getPiece().getCouleur());
+        System.out.println("Quelle pièce ? " + this.getCase(coord).getPiece());
+        return estDansPlateau(coord) && !estCaseVide(coord) && this.getCase(coord).getPiece().getCouleur() != couleur;
     }
 
     public String [][] exporterPlateau() {

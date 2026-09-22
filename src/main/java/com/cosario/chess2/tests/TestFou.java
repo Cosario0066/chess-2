@@ -12,16 +12,24 @@ public class TestFou {
         p.initialisationPlateau();
         System.out.println(p);
 
-        Fou f = new Fou(5,5,Couleur.BLANC);
-        p.placerPiece(f);
+        Fou f = new Fou(5,5,Couleur.BLANC, p);
         System.out.println(p);
 
-        Fou f2 = new Fou(6,6, Couleur.NOIR);
-        p.placerPiece(f2);
+        System.out.println(f.getCoupsPossibles().toArray().length);
+
+
+        Fou f2 = new Fou(6,6, Couleur.NOIR, p);
         System.out.println(p);
 
-        for (Case c : f.getCoupsPossibles(p)) {
-            System.out.println(c.getCoordonee());
+        Fou f3 = new Fou(4,4,Couleur.BLANC,p);
+        System.out.println(p);
+        Pion p1 = new Pion(4,6,Couleur.BLANC,p);
+
+        Pion p2 = new Pion(6,4, Couleur.NOIR, p);
+        System.out.println(p);
+
+        for (Case c : f.getCoupsPossibles()) {
+            System.out.print(c.getCoordonee());
         }
     }
 }

@@ -16,27 +16,27 @@ public class BoardService {
 
         // Créer des pions blancs et noirs
         for (int i = 0; i < 10; i++) {
-            new Pion(plateau, new Coordonee(i, 1), Couleur.BLANC);
-            new Pion(plateau, new Coordonee(i, 8), Couleur.NOIR);
+            new Pion(i, 1, Couleur.BLANC, plateau);
+            new Pion(i, 8, Couleur.NOIR, plateau);
         }
 
         // Créer les rois
-        new Roi(plateau, new Coordonee(5, 0), Couleur.BLANC);
-        new Roi(plateau, new Coordonee(5, 9), Couleur.NOIR);
-        new Reine(plateau, new Coordonee(4, 0), Couleur.BLANC);
-        new Reine(plateau, new Coordonee(4, 9), Couleur.NOIR);
-        new Fou(plateau, new Coordonee(3, 0), Couleur.BLANC);
-        new Fou(plateau, new Coordonee(6, 0), Couleur.BLANC);
-        new Fou(plateau, new Coordonee(3, 9), Couleur.NOIR);
-        new Fou(plateau, new Coordonee(6, 9), Couleur.NOIR);
-        new Cavalier(plateau, new Coordonee(2, 0), Couleur.BLANC);
-        new Cavalier(plateau, new Coordonee(7, 0), Couleur.BLANC);
-        new Cavalier(plateau, new Coordonee(2, 9), Couleur.NOIR);
-        new Cavalier(plateau, new Coordonee(7, 9), Couleur.NOIR);
-        new Tour(plateau, new Coordonee(1, 0), Couleur.BLANC);
-        new Tour(plateau, new Coordonee(8, 0), Couleur.BLANC);
-        new Tour(plateau, new Coordonee(1, 9), Couleur.NOIR);
-        new Tour(plateau, new Coordonee(8, 9), Couleur.NOIR);
+        new Roi(5, 0, Couleur.BLANC, plateau);
+        new Roi(5, 9, Couleur.NOIR, plateau);
+        new Reine(4, 0, Couleur.BLANC, plateau);
+        new Reine(4, 9, Couleur.NOIR, plateau);
+        new Fou(3, 0, Couleur.BLANC, plateau);
+        new Fou(6, 0, Couleur.BLANC, plateau);
+        new Fou(3, 9, Couleur.NOIR, plateau);
+        new Fou(6, 9, Couleur.NOIR, plateau);
+        new Cavalier(2, 0, Couleur.BLANC, plateau);
+        new Cavalier(7, 0, Couleur.BLANC, plateau);
+        new Cavalier(2, 9, Couleur.NOIR, plateau);
+        new Cavalier(7, 9, Couleur.NOIR, plateau);
+        new Tour(1, 0, Couleur.BLANC, plateau);
+        new Tour(8, 0, Couleur.BLANC, plateau);
+        new Tour(1, 9, Couleur.NOIR, plateau);
+        new Tour(8, 9, Couleur.NOIR, plateau);
 
         String[][] board = plateau.exporterPlateau();
         return new BoardResponse(size, board);

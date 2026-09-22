@@ -3,13 +3,14 @@ package com.cosario.chess2.model;
 import java.util.ArrayList;
 
 public class Roi extends Piece {
-    public Roi(int x, int y, Couleur couleur) {
-        super(couleur, x, y);
+    public Roi(int x, int y, Couleur couleur, Plateau plateau) {
+        super(couleur, x, y, plateau);
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+    public ArrayList<Case> getCoupsPossibles() {
         // init
+        Plateau plateau = this.getPlateau();
         ArrayList<Case> coupsPossibles = new ArrayList<>();
         Coordonee coordActuelle = this.getCaseActuelle().getCoordonee();
 

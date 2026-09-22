@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class Pion extends Piece {
 
-    public Pion(int x, int y, Couleur couleur) {
-        super(couleur, x, y);
+    public Pion(int x, int y, Couleur couleur, Plateau plateau) {
+        super(couleur, x, y, plateau);
     }
 
     @Override
-    public ArrayList<Case> getCoupsPossibles(Plateau plateau) {
+    public ArrayList<Case> getCoupsPossibles() {
+        Plateau plateau = this.getPlateau();
         ArrayList<Case> coupsPossibles = new ArrayList<>();
         Coordonee coordActuelle = this.getCoordoneeActuelle();
         int direction = (this.getCouleur() == Couleur.BLANC) ? 1 : -1;
