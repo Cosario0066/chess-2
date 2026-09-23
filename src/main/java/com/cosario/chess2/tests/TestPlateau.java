@@ -12,9 +12,9 @@ public class TestPlateau {
             System.out.println(c.getCoordonnee());
         }
 
-        p.deplacementPiece(p1, new Coordonnee(5,5));
+        p.deplacementPiece(p1, new Coordonnee(5,5), Couleur.BLANC);
         System.out.println(p);
-        p.deplacementPiece(p1, new Coordonnee(1,2));
+        p.deplacementPiece(p1, new Coordonnee(1,2),Couleur.BLANC);
         System.out.println(p);
 
     }

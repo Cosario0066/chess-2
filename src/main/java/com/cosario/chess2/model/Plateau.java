@@ -93,7 +93,7 @@ public class Plateau {
         return sb.toString();
     }
 
-    public void deplacementPiece(Piece piece, Coordonnee newCoord) {
+    public void deplacementPiece(Piece piece, Coordonnee newCoord, Couleur tour) {
         if (piece == null) {
             throw new IllegalArgumentException("Aucune pièce sur la case de départ");
         }
@@ -102,6 +102,9 @@ public class Plateau {
         Case target = this.getCase(newCoord);
         if (!coupsPossibles.contains(target)) {
             throw new IllegalArgumentException("Déplacement impossible vers " + newCoord);
+        }
+        if (piece.getCouleur() != tour){
+            throw new IllegalArgumentException(("La pièce n'est pas de la bonne couleur"));
         }
 
         piece.getCaseActuelle().retirerPiece();

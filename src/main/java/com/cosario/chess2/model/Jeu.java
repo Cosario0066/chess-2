@@ -5,6 +5,7 @@ import lombok.Setter;
 
 public class Jeu {
     @Setter
+    @Getter
     private int score;
     @Getter
     private Plateau plateau;
@@ -14,12 +15,13 @@ public class Jeu {
     private boolean mat;
     @Setter
     private boolean pat;
+    @Getter
     @Setter
     private boolean check;
 
     public Jeu(){
         score = 0;
-        Couleur tour = Couleur.BLANC;
+        this.tour = Couleur.BLANC;
         mat = false;
         pat = false;
         check = false;
@@ -41,12 +43,12 @@ public class Jeu {
     }
 
     public void testCheck(){
-        Coordonnee coordRoi = trouverRoi();
+        Case caseRoi = trouverRoi();
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
                 Piece p = plateau.getCase(x,y).getPiece();
                 if (p!=null && getTour() != p.getCouleur()) {
-                    if (p.getCoupsPossibles().contains(coordRoi)){
+                    if (p.getCoupsPossibles().contains(caseRoi)){
                         setCheck(true);
                     }
                 }
@@ -54,13 +56,13 @@ public class Jeu {
         }
     }
 
-    public Coordonnee trouverRoi() {
+    public Case trouverRoi() {
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
                 Piece p = plateau.getCase(x, y).getPiece();
-                if (p != null && p.getCouleur() != getTour()) {
+                if (p != null && p.getCouleur() == getTour()) {
                     if (p instanceof Roi) {
-                        return new Coordonnee(x, y);
+                        return getPlateau().getCase(x,y);
                     }
                 }
             }
@@ -120,6 +122,15 @@ public class Jeu {
         }
         return nbrCoups;
     }
+
+    public Piece accederPiece(int x, int y){
+        return getPlateau().getCase(x,y).getPiece();
+    }
+
+    public void tourSuivant(){
+        this.tour = tour == Couleur.BLANC ? Couleur.NOIR : Couleur.BLANC;
+    }
+
 }
 
 
