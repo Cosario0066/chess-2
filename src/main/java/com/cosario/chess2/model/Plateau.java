@@ -93,7 +93,7 @@ public class Plateau {
         return sb.toString();
     }
 
-    public void deplacementPiece(Piece piece, Coordonee newCoord) {
+    public void deplacementPiece(Piece piece, Coordonnee newCoord) {
         if (piece == null) {
             throw new IllegalArgumentException("Aucune pièce sur la case de départ");
         }

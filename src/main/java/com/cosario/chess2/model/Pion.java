@@ -38,13 +38,13 @@ public class Pion extends Piece {
         }
 
         // Capture diagonale vers la droite (x diminue)
-        Coordonee coordDiagDroite = new Coordonee(coordActuelle.getX() - 1, coordActuelle.getY() + direction);
+        Coordonnee coordDiagDroite = new Coordonnee(coordActuelle.getX() - 1, coordActuelle.getY() + direction);
         if (plateau.estCaseOccupeeParAdversaire(coordDiagDroite, this.getCouleur())) {
             coupsPossibles.add(plateau.getCase(coordDiagDroite));
         }
 
         // Capture diagonale vers la gauche (x augmente)
-        Coordonee coordDiagGauche = new Coordonee(coordActuelle.getX() + 1, coordActuelle.getY() + direction);
+        Coordonnee coordDiagGauche = new Coordonnee(coordActuelle.getX() + 1, coordActuelle.getY() + direction);
         if (plateau.estCaseOccupeeParAdversaire(coordDiagGauche, this.getCouleur())) {
             coupsPossibles.add(plateau.getCase(coordDiagGauche));
         }
