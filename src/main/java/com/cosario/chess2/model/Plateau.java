@@ -1,5 +1,7 @@
 package com.cosario.chess2.model;
 
+import tools.jackson.databind.introspect.DefaultAccessorNamingStrategy;
+
 import java.util.List;
 
 public class Plateau {
@@ -93,7 +95,7 @@ public class Plateau {
         return sb.toString();
     }
 
-    public void deplacementPiece(Piece piece, Coordonee newCoord) {
+    public void deplacementPiece(Piece piece, Coordonnee newCoord, Couleur tour) {
         if (piece == null) {
             throw new IllegalArgumentException("Aucune pièce sur la case de départ");
         }
@@ -103,10 +105,40 @@ public class Plateau {
         if (!coupsPossibles.contains(target)) {
             throw new IllegalArgumentException("Déplacement impossible vers " + newCoord);
         }
-
-        piece.getCaseActuelle().retirerPiece();
-        target.setPiece(piece);
-        piece.setADejaBouge(true);
+        if (piece.getCouleur() != tour) {
+            throw new IllegalArgumentException(("La pièce n'est pas de la bonne couleur"));
+        }
+        if (!target.estVide() && piece instanceof Bandit) {
+            int x = piece.getCoordoneeActuelle().getX();
+            int y = piece.getCoordoneeActuelle().getY();
+            switch (target.getPiece()) {
+                case Pion pion:
+                    piece = new Pion(x, y, piece.getCouleur(), this);
+                    piece.setADejaBouge(target.getPiece().isADejaBouge());
+                    break;
+                case Cavalier cavalier:
+                    piece = new Cavalier(x, y, piece.getCouleur(), this);
+                    piece.setADejaBouge(target.getPiece().isADejaBouge());
+                    break;
+                case Fou fou:
+                    piece = new Fou(x, y, piece.getCouleur(), this);
+                    piece.setADejaBouge(target.getPiece().isADejaBouge());
+                    break;
+                case Reine dame:
+                    piece = new Reine(x, y, piece.getCouleur(), this);
+                    piece.setADejaBouge(target.getPiece().isADejaBouge());
+                    break;
+                case Tour tour1:
+                    piece = new Tour(x, y, piece.getCouleur(), this);
+                    piece.setADejaBouge(target.getPiece().isADejaBouge());
+                    break;
+                default:
+                    break;
+            }
+            piece.getCaseActuelle().retirerPiece();
+            target.setPiece(piece);
+            piece.setADejaBouge(true);
+        }
     }
 
     public void initialisationPiece() {
@@ -130,5 +162,10 @@ public class Plateau {
         new Tour(8, 0, Couleur.BLANC, this);
         new Tour(1, 9, Couleur.NOIR, this);
         new Tour(8, 9, Couleur.NOIR, this);
+        new Bandit(0,0,Couleur.BLANC,this);
+        new Bandit(9,0,Couleur.BLANC,this);
+        new Bandit(0,9,Couleur.BLANC,this);
+        new Bandit(9,9,Couleur.BLANC,this);
+
     }
 }

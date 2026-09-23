@@ -5,7 +5,6 @@ import lombok.Setter;
 
 public class Case {
 
-    @Setter
     @Getter
     private Piece piece;
     @Getter

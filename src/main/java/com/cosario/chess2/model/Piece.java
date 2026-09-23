@@ -14,6 +14,7 @@ public abstract class Piece {
     @Getter
     private Plateau plateau;
     @Setter
+    @Getter
     private boolean aDejaBouge;
 
     public Piece(Couleur couleur, int x, int y, Plateau plateau) {

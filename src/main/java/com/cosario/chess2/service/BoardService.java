@@ -19,7 +19,7 @@ public class BoardService {
 
     public void movePiece(int fromX, int fromY, int toX, int toY) {
         Piece piece = plateau.getCase(fromX, fromY).getPiece();
-        plateau.deplacementPiece(piece, new Coordonee(toX, toY));
+        plateau.deplacementPiece(piece, new Coordonnee(toX, toY), Couleur.BLANC);
     }
 
     public Plateau createPlateau() {
