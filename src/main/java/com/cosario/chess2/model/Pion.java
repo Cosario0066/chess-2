@@ -12,7 +12,7 @@ public class Pion extends Piece {
         this.enPassant = false;
     }
 
-    public boolean getEnPassant(){
+    public boolean isEnPassant(){
         return this.enPassant;
     }
 
